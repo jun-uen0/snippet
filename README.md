@@ -1,1 +1,1 @@
-init
+snippet for linux, git, and some program langs
