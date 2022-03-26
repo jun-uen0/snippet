@@ -1,0 +1,48 @@
+i think all dev needs git completion:</br> 
+https://gist.github.com/juno/5546179
+
+add remote origin
+```shell
+git remote add orign <url>
+```
+add origin url
+```shell
+git remote set-url origin <url>
+```
+rename local branch
+```shell
+git branch -m <old branch name>　<new branch name>
+```
+set initail branch name as "main"
+```shell
+git config --global init.defaultBranch main
+```
+link local branch to remote one
+```shell
+git branch -u origin/<branch>
+```
+undo add
+```shell
+git rm --cache -r .
+git rm --cache <file name>
+```
+udno remote branch (※ caution)
+```shell
+git pull origin <branch name>
+git push origin <branch name>: <branch name>_backup # copy
+git reset HEAD~<desired number> # undo
+git push origin :<branch name> # delete branch
+git push origin <branch name> # create branch
+git push origin :<branch name>_backup # create branch
+```
+combing bultiple commits</br>
+```shell
+git rebase -i HEAD
+git rebase -i HEAD~~ # combining 2 commits
+git rebase -i HEAD~~~  # combining 3 commits
+git rebase -i HEAD~4 # combining 4 commits
+```
+set alias
+```shell
+git config --global --edit
+```
