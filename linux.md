@@ -13,3 +13,9 @@ nslookup <domain name>
 dig <domain name>
 host <domain name>
 ```
+
+### mv
+change directory name
+```shell
+mv <old name> <new name>
+```
