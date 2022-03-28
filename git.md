@@ -58,4 +58,5 @@ git stash -u # stash current change
 git stash list 
 git stash pop stash@{0} # retrive stash by number
 git stash save "stash message" # stash with massages
+git stash clear # clear all stash
 ```
