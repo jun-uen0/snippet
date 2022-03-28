@@ -26,6 +26,12 @@ undo add
 git rm --cache -r .
 git rm --cache <file name>
 ```
+uedo commit
+```shell
+git revert -n HEAD
+git revert -n HEAD~1
+git revert -n HEAD~2
+```
 udno remote branch (※ caution)
 ```shell
 git pull origin <branch name>
@@ -45,4 +51,11 @@ git rebase -i HEAD~4 # combining 4 commits
 set alias
 ```shell
 git config --global --edit
+```
+stash changes
+```shell
+git stash -u # stash current change
+git stash list 
+git stash pop stash@{0} # retrive stash by number
+git stash save "stash message" # stash with massages
 ```
