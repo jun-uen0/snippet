@@ -60,3 +60,7 @@ git stash pop stash@{0} # retrive stash by number
 git stash save "stash message" # stash with massages
 git stash clear # clear all stash
 ```
+rebasing commits
+```shell
+git rebase -i HEAD~<number>
+```
