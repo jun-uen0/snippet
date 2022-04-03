@@ -1,3 +1,7 @@
+stop warning msg
+```shell
+#![allow(dead_code)]
+```
 iterator
 ```shell
 for iter in 0..5 {
