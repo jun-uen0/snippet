@@ -25,3 +25,9 @@ fn type_of<T>(_: &T) -> &'static str {
 }
 // println!("{}", type_of(&10));
 ```
+String to int
+ref: https://stackoverflow.com/questions/27043268/convert-a-string-to-int
+```shell
+let my_string = "27".to_string();  // `parse()` works with `&str` and `String`!
+let my_int = my_string.parse::<i32>().unwrap();
+```
