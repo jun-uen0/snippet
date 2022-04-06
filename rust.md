@@ -55,3 +55,27 @@ fn main() {
   );
 }
 ```
+none and option
+rust doesn't have null but None
+```shell
+struct MyAnime<T> {
+  anime: Option<T>,
+}
+
+fn main() {
+  let str_anime = MyAnime::<&str> { anime: None };
+  if str_anime.anime.is_none() {
+    println!("i do not have favorite anime")
+  } else {
+    println!("i do have favorite anime")
+  }
+  // i do not have favorite anime
+  
+  let str_anime = MyAnime::<&str> { anime: Some("Toradora!") };
+  match str_anime.anime {
+    Some(v) => println!("i do have favorite anime: {}", v),
+    None => println!("i do not have favorite anime"),
+  }
+  // i do have favorite anime: Toradora!
+}
+```
