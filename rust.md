@@ -40,3 +40,18 @@ fn main() {
   println!("{}", num_32.ceil()); // Output: 4
 }
 ```
+generic type
+```shell
+struct MyAnime<T> {
+  anime: T,
+}
+fn main() {
+  let str_data = MyAnime::<&str> { anime: "Steins;Gate" };
+  let bool_data = MyAnime::<bool> { anime: true };
+  let inference_data = MyAnime { anime: 0.571024};
+  println!(
+    "{} {} {}",
+    str_data.anime, bool_data.anime, inference_data.anime,
+  );
+}
+```
