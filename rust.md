@@ -4,11 +4,13 @@ stop warning msg
 ```
 iterator
 ```shell
-for iter in 0..5 {
-  println!("{}", iter);
-}
-for iter in 0..=5 {
-  println!("{}", iter);
+fn main(){
+  for iter in 0..5 {
+    println!("{}", iter); // 0 1 2 3 4
+  }
+  for iter in 0..=5 {
+    println!("{}", iter); // 0 1 2 3 4 5
+  }
 }
 ```
 get odd num
