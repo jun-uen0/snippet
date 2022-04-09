@@ -64,3 +64,8 @@ rebasing commits
 ```shell
 git rebase -i HEAD~<number>
 ```
+delete branch (both local and remote)
+```shell
+git branch -d <local branch name>
+git push --delete <remote branch name>
+```
