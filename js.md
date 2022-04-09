@@ -1,9 +1,9 @@
 dicimal to binary
-```
+```shell
 const toBinary = n => parseInt(n.toString(2))
 ```
 get biggest val in obj
-```
+```shell
 const obj = { A: 3000, B: 1000, C: 2000, D: 10000, E: 20000, F: 9000, G: 7000 }
 const getBiggestValInObj = obj => {
   return Object.entries(obj).reduce((a,b) => b[1] > a[1] ? b : a)
@@ -11,16 +11,15 @@ const getBiggestValInObj = obj => {
 console.log(getBiggestValInObj(obj)) // [ 'E', 20000 ]
 ```
 remove duplicates
-```
+```shell
 const removeDuplicates = arr => {
     [new Set(...arr)]
 }
 const arr = [1,2,2,3,4,4,4,5,6,7,8,8,8,9]
 console.log(removeDuplicates(arr))
 ```
-
 get prime num
-```
+```shell
 const to = 100
 const from = 2
 let numObj = {}
