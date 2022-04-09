@@ -18,6 +18,16 @@ const removeDuplicates = arr => {
 const arr = [1,2,2,3,4,4,4,5,6,7,8,8,8,9]
 console.log(removeDuplicates(arr))
 ```
+transpose array
+```shell
+const getTransposeArr = arr => {
+  let transposeArr = []
+  for(let i = 0; i < arr[0].length; i++){
+    transposeArr.push(arr.map(x => x[i]))
+  }
+  return transposeArr
+}
+```
 get prime num
 ```shell
 const to = 100
