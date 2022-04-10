@@ -17,7 +17,7 @@ console.log(getBiggestValInObj(obj)) // [ 'E', 20000 ]
 remove duplicates
 ```shell
 const removeDuplicates = arr => {
-    [new Set(...arr)]
+  return [...new Set(arr)]
 }
 const arr = [1,2,2,3,4,4,4,5,6,7,8,8,8,9]
 console.log(removeDuplicates(arr))

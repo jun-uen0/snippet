@@ -15,7 +15,7 @@ git branch -m <old branch name>　<new branch name>
 ```
 set initail branch name as "main"
 ```shell
-git config --global init.defaultBranch main
+git config --global init.defaultBranch <branch name>
 ```
 link local branch to remote one
 ```shell
