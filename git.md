@@ -20,6 +20,7 @@ git config --global init.defaultBranch main
 link local branch to remote one
 ```shell
 git branch -u origin/<branch>
+git push origin <new remote branch name>
 ```
 undo add
 ```shell
