@@ -51,3 +51,7 @@ sum all element in array
 ```shell
 const sum = arr => arr.reduce((a,b)=> a + b)
 ```
+make repeat number
+```shell
+const makeRepeatNum = (startNum, endNum) => new Array(endNum).fill(0).map((_,i) => i + startNum)
+```
