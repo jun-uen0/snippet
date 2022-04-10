@@ -22,6 +22,12 @@ const removeDuplicates = arr => {
 const arr = [1,2,2,3,4,4,4,5,6,7,8,8,8,9]
 console.log(removeDuplicates(arr))
 ```
+get duplicates
+```shell
+const getDuplicates = arr => arr.filter((el,i,array) => {
+  return !(array.indexOf(el) === i)
+})
+```
 transpose array
 ```shell
 const getTransposeArr = arr => {
