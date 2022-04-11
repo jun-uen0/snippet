@@ -70,3 +70,7 @@ delete branch (both local and remote)
 git branch -d <local branch name>
 git push --delete <remote branch name>
 ```
+merge specific file or directory from other branch
+```shell
+git checkout <branch name> -- <file or directory name>
+```
