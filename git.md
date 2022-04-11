@@ -72,5 +72,6 @@ git push --delete <remote branch name>
 ```
 merge specific file or directory from other branch
 ```shell
+# git show  <branch name>>:<file or directory name>
 git checkout <branch name> -- <file or directory name>
 ```
