@@ -26,3 +26,9 @@ rm <file name>
 rm -r <directory name>
 rm -rf <directory name> # remove without confarmation
 ```
+
+### tail
+check log in real time
+```shell
+tail -f
+```
