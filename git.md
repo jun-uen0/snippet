@@ -75,3 +75,8 @@ merge specific file or directory from other branch
 # git show  <branch name>>:<file or directory name>
 git checkout <branch name> -- <file or directory name>
 ```
+git clone with personal access tokens
+ref: https://stackoverflow.com/questions/25409700/using-gitlab-token-to-clone-without-authentication
+```shell
+https://$GIT_USERNAME:$GITLAB_PERSONAL_ACCESS_TOKEN@<gitlab url>
+```
