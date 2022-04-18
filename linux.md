@@ -19,3 +19,10 @@ change directory name
 ```shell
 mv <old name> <new name>
 ```
+
+### rm / rmdir
+```shell
+rm <file name>
+rm -r <directory name>
+rm -rf <directory name> # remove without confarmation
+```
