@@ -32,3 +32,9 @@ check log in real time
 ```shell
 tail -f
 ```
+### lsof
+list all file opens
+```shell
+# see what port number nginx listens
+lsof -c nginx -P | grep LISTEN
+```
