@@ -7,3 +7,7 @@ sudo nginx
 ```shell
 nginx -s stop
 ```
+### see nginx process
+```shell
+ps -ef | grep nginx | grep -v grep
+```
