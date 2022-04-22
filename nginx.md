@@ -11,3 +11,8 @@ nginx -s stop
 ```shell
 ps -ef | grep nginx | grep -v grep
 ```
+### nginx restart
+ref: https://serverfault.com/questions/225948/how-to-restart-nginx-on-mac-os-x
+```
+sudo nginx -s stop && sudo nginx
+```
