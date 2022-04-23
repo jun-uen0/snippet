@@ -16,3 +16,7 @@ ref: https://serverfault.com/questions/225948/how-to-restart-nginx-on-mac-os-x
 ```
 sudo nginx -s stop && sudo nginx
 ```
+### check for the process id of the main nginx process
+```
+ps x | grep nginx
+```
