@@ -80,3 +80,7 @@ ref: https://stackoverflow.com/questions/25409700/using-gitlab-token-to-clone-wi
 ```shell
 https://$GIT_USERNAME:$GITLAB_PERSONAL_ACCESS_TOKEN@<gitlab url>
 ```
+see log with Author and Comitter
+```shell
+git log -1 --pretty=full
+```
