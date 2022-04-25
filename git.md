@@ -84,3 +84,7 @@ see log with Author and Comitter
 ```shell
 git log -1 --pretty=full
 ```
+change author
+```shell
+git commit --amend --author="name <email address>"
+```
