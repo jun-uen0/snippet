@@ -1,4 +1,4 @@
-i think all dev needs git completion:</br> 
+i think all dev needs git completion:</br>
 https://gist.github.com/juno/5546179
 
 add remote origin
@@ -56,7 +56,7 @@ git config --global --edit
 stash changes
 ```shell
 git stash -u # stash current change
-git stash list 
+git stash list
 git stash pop stash@{0} # retrive stash by number
 git stash save "stash message" # stash with massages
 git stash clear # clear all stash
@@ -87,4 +87,14 @@ git log -1 --pretty=full
 change author
 ```shell
 git commit --amend --author="name <email address>"
+```
+Globally git ignore DS_STORE
+```shell
+vi ~/.gitignore_global
+
+# add
+.DS_Store
+
+# run this command in git project
+git config --global core.excludesfile ~/.gitignore_global
 ```

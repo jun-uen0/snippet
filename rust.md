@@ -81,7 +81,7 @@ fn main() {
   let second_line = vec[1].trim().parse().unwrap_or(0);
   println!("first_line is {}, and second_line is: {}", first_line, second_line);
 }
-```
+```"
 
 none and option
 rust doesn't have null but None
