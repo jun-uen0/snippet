@@ -11,7 +11,12 @@ profile swicher (https://github.com/johnnyopao/awsp)
 ```shell
 $ awsp
 AWS Profile Switcher
-? Choose a profile 
+? Choose a profile
 ❯ test 
   default
+```
+delete amplify app (when you can't delete it in dashboard)
+run command below in AWS CloudShell
+```shell
+aws amplify delete-app --app-id <your_app-id>
 ```
