@@ -88,6 +88,15 @@ change author
 ```shell
 git commit --amend --author="name <email address>"
 ```
+change committer
+link: https://stackoverflow.com/questions/750172/how-to-change-the-author-and-committer-name-and-e-mail-of-multiple-commits-in-gi
+```shell
+git config --local user.name "New Author Name"
+git config --local user.email "<email@address.com>"
+
+git commit --amend --no-edit --reset-author
+git push -f origin <your branch>
+```
 Globally git ignore DS_STORE
 ```shell
 vi ~/.gitignore_global
