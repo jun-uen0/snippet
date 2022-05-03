@@ -32,13 +32,18 @@ list.pop()
 # if don't specify the location,
 # the last item will be deleted
 ```
-sort itmes in the list
+sort items in the list
 ```py
-list = [4, 2, 3, 1]
-sorted_list = list.sort()
+  list = [4, 2, 3, 1]
+  sorted_list = sorted(list)
 # sorted_list -> [1, 2, 3, 4]
 # list -> [4, 2, 3, 1]
 # the original list will not be sorted
+
+# if you want sort the original list
+list.sort()
+# [1, 2, 3, 4]
+# you can not substitute to a variable
 ```
 reverse the items in the list
 ```py
