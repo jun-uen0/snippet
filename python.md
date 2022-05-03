@@ -48,3 +48,9 @@ listB = list(reversed(listA)) # reversed method return iterator
 # listA = [4, 2, 3, 1]
 # the original list will not be sorted
 ```
+create a list containing desired number of zeros
+```py
+n = 3
+lst = [0] * n
+print(lst)
+```
