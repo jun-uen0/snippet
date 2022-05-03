@@ -59,3 +59,10 @@ n = 3
 lst = [0] * n
 print(lst)
 ```
+remove duplicates in list
+ref: https://www.w3schools.com/python/python_howto_remove_duplicates.asp
+```py
+mylist = ["a", "b", "a", "c", "c"]
+mylist = list(dict.fromkeys(mylist))
+print(mylist)
+```
