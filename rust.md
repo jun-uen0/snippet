@@ -12,21 +12,27 @@ fn main(){
     println!("{}", iter); // 0 1 2 3 4 5
   }
 }
+
 ```
+
 get odd num
 ```shell
 # https://stackoverflow.com/questions/26243025/remove-an-element-from-a-vector
 let mut numbers = vec![1, 2, 3, 4, 5, 6, 8, 9, 11, 13, 14, 15];
 numbers.drain_filter(|x| *x % 2 == 0).collect::<Vec<_>>();
 assert_eq!(numbers, vec![1, 3, 5, 9, 11, 13, 15]);
+
 ```
+
 get data type
 ```shell
-fn type_of<T>(_: &T) -> &'static str {
+fn type_of<T>(_: &T) -> &'static str {  
   std::any::type_name::<T>()
 }
 // println!("{}", type_of(&10));
 ```
+
+```shell
 String to int
 ref link: https://stackoverflow.com/questions/30355185/how-to-read-an-integer-input-from-the-user-in-rust-1-0
 ```shell
@@ -81,7 +87,7 @@ fn main() {
   let second_line = vec[1].trim().parse().unwrap_or(0);
   println!("first_line is {}, and second_line is: {}", first_line, second_line);
 }
-```"
+```
 
 none and option
 rust doesn't have null but None
@@ -98,7 +104,7 @@ fn main() {
     println!("i do have favorite anime")
   }
   // i do not have favorite anime
-  
+
   let str_anime = MyAnime::<&str> { anime: Some("Toradora!") };
   match str_anime.anime {
     Some(v) => println!("i do have favorite anime: {}", v),

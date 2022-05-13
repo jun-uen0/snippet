@@ -46,3 +46,13 @@ com.docke 19748 junueno   43u  IPv6 0x31364f6acdd32089      0t0  TCP *:3000 (LIS
 # 19748 is PID, if you want to kill the process run command below
 kill 19748
 ```
+
+### htop
+display GUI for tasks, CPU, workers
+```shell
+# install htop for Mac via homebrew
+brew install htop
+
+# Run htop
+htop
+```

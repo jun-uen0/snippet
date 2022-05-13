@@ -97,6 +97,16 @@ git config --local user.email "<email@address.com>"
 git commit --amend --no-edit --reset-author
 git push -f origin <your branch>
 ```
+change author and committer for all commit
+ref: https://gist.github.com/bgromov/a1905055a8b9cdbeb1d2a87e70920cc8
+```shell
+git filter-branch -f --env-filter "
+    GIT_AUTHOR_NAME='Newname'
+    GIT_AUTHOR_EMAIL='new@email'
+    GIT_COMMITTER_NAME='Newname'
+    GIT_COMMITTER_EMAIL='new@email'
+  " HEAD
+```
 Globally git ignore DS_STORE
 ```shell
 vi ~/.gitignore_global
