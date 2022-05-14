@@ -117,3 +117,7 @@ vi ~/.gitignore_global
 # run this command in git project
 git config --global core.excludesfile ~/.gitignore_global
 ```
+change commit message
+```shell
+git commit --amend
+```
