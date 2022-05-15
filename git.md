@@ -121,3 +121,9 @@ change commit message
 ```shell
 git commit --amend
 ```
+change default branch name
+explanation: https://stackoverflow.com/questions/68277661
+```shell
+root/prj git:(main) git branch -M dev
+➜ root/prj git:(dev)
+```
