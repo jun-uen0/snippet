@@ -27,7 +27,7 @@ undo add
 git rm --cache -r .
 git rm --cache <file name>
 ```
-uedo commit
+undo commit
 ```shell
 git revert -n HEAD
 git revert -n HEAD~1
