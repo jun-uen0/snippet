@@ -56,3 +56,11 @@ brew install htop
 # Run htop
 htop
 ```
+
+```shell
+systemctl # start deamon
+gpasswd # manage groups
+locate # to get location for files/directories
+netstat # to check port
+dpkg # control packages
+```
