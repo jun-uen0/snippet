@@ -4,13 +4,10 @@ const sum = (arr) => {
   }, 0)
 }
 
-const makePowTwo = (n) => {
-  let arr = []
-  for(let i = 1; i <= n; i++) {
-    const latest = sum(arr) + 1
-    arr.push(latest)
-  }
-  return arr
+const arr = []
+for(let i = 1; i <= 10; i++) {
+  const latest = sum(arr) + 1
+  arr.push(latest)
 }
 
-console.log(makePowTwo(sum(10)))
+console.log(arr)
