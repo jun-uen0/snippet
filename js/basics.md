@@ -1,4 +1,4 @@
-rest parameters
+### rest parameters
 ```shell
 const rest = sum(...args) => {
   return args.reduce((previous, current) => {
@@ -8,9 +8,9 @@ const rest = sum(...args) => {
 const result1 = sum(1, 2, 3);
 const result2 = sum(1, 2, 3, 4, 5);
 
-document.write(`結果A：${result1}, 結果B：${result2}`);
+document.write(`result1: ${result1}, result2: ${result2}`);
 ```
-reduce
+### reduce
 ```shell
 const array1 = [1, 2, 3, 4];
 
@@ -47,7 +47,7 @@ index 3
 array [ 1, 2, 3, 4 ]
 10
 ```
-replace
+### replace
 ```shell
 #  bad replace
 const str = "apple,banana,orange";
@@ -55,9 +55,9 @@ const replaced = str.replace(',', ' ')
 console.log(replaced) // apple banana,orange
 ```
 
-- good replace
+- Regex Ver
 ```shell
-# good replace
+# better replace
 const str = "apple,banana,orange";
 const replaced = str.replace(/,/g, ' ')
 console.log(replaced) // apple banana orange
