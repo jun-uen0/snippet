@@ -1,6 +1,11 @@
-let fib = [0, 1]
-
-for (i = 2; i <= 10; i++) {
-  fib[i] = fib[i - 2] + fib[i - 1]
-  console.log(fib[i])
+const fibonacci = (n) => {
+  let fib = [0, 1]
+  if (n < 2) {
+    return fib[n]
+  }
+  while (fib.length < n) {
+    fib.push(fib[fib.length - 1] + fib[fib.length - 2])
+  }
+  return fib
 }
+console.log(fibonacci(10))
