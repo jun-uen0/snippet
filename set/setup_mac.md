@@ -1,13 +1,19 @@
 # Apps that I should install/DL
-- Google Chrome   
-- Brave   
-- nShitlt  
-- Karabiner  
-- VS Code  
-- Docker  
+- Google Chrome: https://www.google.co.jp/chrome   
+- Brave: https://brave.com/download   
+- ShiftIt: https://github.com/fikovnik/ShiftIt  
+- Karabiner: https://karabiner-elements.pqrs.org/docs/releasenotes  
+- VS Code: https://azure.microsoft.com/products/visual-studio-code 
+- Docker Desktop: https://www.docker.com/products/docker-desktop  
+- Postman: https://www.postman.com/downloads
+- Scroll Reverser: https://pilotmoon.com/scrollreverser   
+- ExpressVPN: https://www.expressvpn.com/latest/1   
+- Dashlane: https://app.dashlane.com/login   
+- Grammarly: https://www.grammarly.com/desktop   
 
 - Rossetta
 - Homebrew
+- NVM
 
 # Setup local environment
 
@@ -67,6 +73,21 @@ fi
 ```shell
 source ~/.zshrc
 ```
+
+### Speed Up for Mouse
+Reference: https://paulminors.com/blog/how-to-speed-up-mouse-tracking-on-mac/
+
+- Check the current speed
+```shell
+defaults read -g com.apple.mouse.scaling
+```
+
+```shell
+defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 5.0
+```
+
+
+
 
 ### Costumize
 
