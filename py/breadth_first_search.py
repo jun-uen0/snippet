@@ -11,14 +11,16 @@ def is_end_with_i(name):
 def search(name):
   search_queue = deque()
   search_queue += graph[name]
+  searched = []
   while search_queue:
-    person = search_queue.popleft()    
-    if is_end_with_i(person):
-      print(person + " is end with i")
-      return True
-    else:
-      search_queue += graph[person]
-  print("no one is end with i")
+    person = search_queue.popleft()
+    if not person in searched:
+      if is_end_with_i(person):
+        print(person + " is finished with i")
+        return True
+      else:
+        search_queue += graph[person]
+        searched.append(person)
   return False
 
 search('me')
