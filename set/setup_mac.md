@@ -74,20 +74,28 @@ fi
 source ~/.zshrc
 ```
 
-### Speed Up for Mouse
+### Speed Up for Mouse Tracking
 Reference: https://paulminors.com/blog/how-to-speed-up-mouse-tracking-on-mac/
 
 - Check the current speed
 ```shell
 defaults read -g com.apple.mouse.scaling
 ```
-
+- Change the tracking speed
 ```shell
 defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 5.0
 ```
 
+### Change Mouse Sensitivity
 
-
+- Check the current speed
+```shell
+defaults read -g com.apple.mouse.scaling
+```
+- Change the tracking speed
+```shell
+defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 5.0
+```
 
 ### Costumize
 
