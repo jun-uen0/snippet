@@ -55,3 +55,10 @@ make repeat number
 ```shell
 const makeRepeatNum = (startNum, endNum) => new Array(endNum).fill(0).map((_,i) => i + startNum)
 ```
+change to fixed number
+```js
+const fixedNum = (num,point) => {
+  return Number.parseFloat(num).toFixed(point)
+}
+console.log(fixedNum(1.23456789,2)) // 1.23
+```
