@@ -97,6 +97,16 @@ defaults read -g com.apple.mouse.scaling
 defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 5.0
 ```
 
+### Get AltTab
+Reference link:
+https://alt-tab-macos.netlify.app/
+
+- Run this command below, that it.
+```shell
+# Your mac must have Homebrew 2.7 and above
+brew install --cask alt-tab
+```
+
 ### Costumize
 
 Agnoster Setting:  
