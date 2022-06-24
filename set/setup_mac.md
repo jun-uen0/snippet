@@ -14,6 +14,8 @@
 - Rossetta
 - Homebrew
 - NVM
+- Nginx
+- Ngrok
 
 # Setup local environment
 
@@ -94,7 +96,7 @@ defaults read -g com.apple.mouse.scaling
 ```
 - Change the tracking speed
 ```shell
-defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 5.0
+defaults write -g com.apple.mouse.scaling your_mouse_speed # ex. 20.0
 ```
 
 ### Get AltTab
