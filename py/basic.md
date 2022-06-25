@@ -66,3 +66,12 @@ mylist = ["a", "b", "a", "c", "c"]
 mylist = list(dict.fromkeys(mylist))
 print(mylist)
 ```
+
+Zip mutiple lists
+```py
+names = ['Jun', 'Anna', 'Cameron']
+ages = [27, 30 , 24]
+zipped = zip(names, ages)
+print(zipped) # <zip object at 0x10492ac80>
+print(list(zipped)) # [('Jun', 27), ('Anna', 30), ('Cameron', 24)]
+```
