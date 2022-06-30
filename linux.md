@@ -1,3 +1,8 @@
+### create tar file
+```shell
+tar -czf <filename>.tar <filename>
+```
+
 ### man / tldr
 get usage example for each linux command
 to use tldr you have to dl: https://tldr.sh
