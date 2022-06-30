@@ -1,3 +1,8 @@
+### show images in descending order
+```shel
+docker images | sed -e '1d' | sort -h -r
+```
+
 ### delete images unused
 ```shell
 docker rmi $(docker images --filter "dangling=true" -q)

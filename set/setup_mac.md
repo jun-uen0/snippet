@@ -109,6 +109,30 @@ https://alt-tab-macos.netlify.app/
 brew install --cask alt-tab
 ```
 
+### Setup AWS CLI
+Reference: https://docs.aws.amazon.com/cli/latest/userguide/installing.html
+1. Download the latest version of the AWS CLI from the AWS website.
+2. Extract the archive into a folder in your home directory.
+3. Open a new terminal window.
+4. Run the following command:
+```shell
+brew install awscli
+```
+5. Run the following command:
+```shell
+aws --version
+```
+6. Run the following command:
+```shell
+aws configure
+```
+7. And then, you can use the AWS CLI.
+8. Install AWSP (Ref:https://github.com/johnnyopao/awsp#setup)
+```shell
+npm install -g awsp
+```
+
+
 ### Costumize
 
 Agnoster Setting:  
