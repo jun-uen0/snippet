@@ -33,4 +33,8 @@ docker-compose build --no-cache
 ### enter to the container running
 ```shell
 docker exec -it <Docker Image> /bin/bash
+
+# If necessary to use vim
+apt-get update
+apt-get install vim
 ```
