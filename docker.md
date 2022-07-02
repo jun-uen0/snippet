@@ -29,3 +29,8 @@ docker system prune
 ```shell
 docker-compose build --no-cache
 ```
+
+### enter to the container running
+```shell
+docker exec -it <Docker Image> /bin/bash
+```
