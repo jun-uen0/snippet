@@ -1,3 +1,8 @@
+str to list for each char
+```py
+word = 'hello'
+word_list = [char for char in word]
+```
 create empty list
 ```py
 new_list = []
