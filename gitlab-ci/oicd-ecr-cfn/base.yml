@@ -1,0 +1,204 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: CloudFormation Setting
+      Parameters:
+      - Prefix
+      - Env
+    - Label:
+        default: VPC Setting
+      Parameters:
+      - CidrVpc
+    - Label:
+        default: Subnets Setting
+      Parameters:
+      - CidrSubnet1a
+      - CidrSubnet1c
+      - CidrSubnet1d
+Parameters:
+  Prefix:
+    Type: String
+    Default: mh
+  Env:
+    Type: String
+    AllowedValues:
+    - dev
+    - qa
+    - prod
+  CidrVpc:
+    Type: String
+    Default: 10.0.0.0/16
+  CidrSubnet1a:
+    Type: String
+    Default: 10.0.0.0/24
+  CidrSubnet1c:
+    Type: String
+    Default: 10.0.1.0/24
+  CidrSubnet1d:
+    Type: String
+    Default: 10.0.2.0/24
+Resources:
+  # ------------------------------------------------------------#
+  # IAM Role and Policy
+  # ------------------------------------------------------------#
+  IamRoleEcs:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub ${Prefix}-role-ecs-${Env}
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ecs-tasks.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+  IamPolicyEcs:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub ${Prefix}-policy-ecs-${Env}
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - secretsmanager:GetSecretValue
+            Resource: "*"
+      Roles:
+        - !Ref IamRoleEcs
+  # ------------------------------------------------------------#
+  # SG for server
+  # ------------------------------------------------------------#
+  SgServer:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub ${Prefix}-sg-${Env}
+      GroupDescription: masterhub sg for server
+      VpcId: !Ref Vpc
+      SecurityGroupIngress:
+      - IpProtocol: TCP
+        FromPort: 8
+        ToPort: 8
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: TCP
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: TCP
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: TCP
+        CidrIp: 0.0.0.0/0
+        FromPort: 3000
+        ToPort: 3000
+      - IpProtocol: TCP
+        CidrIpv6: ::/0
+        FromPort: 3000
+        ToPort: 3000
+      - IpProtocol: TCP
+        CidrIp: 0.0.0.0/0
+        FromPort: 443
+        ToPort: 443
+      - IpProtocol: TCP
+        CidrIpv6: ::/0
+        FromPort: 443
+        ToPort: 443
+      SecurityGroupEgress:
+      - IpProtocol: -1
+        CidrIp: 0.0.0.0/0
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-sg-server-${Env}
+  # ------------------------------------------------------------#
+  # VPC
+  # ------------------------------------------------------------#
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref CidrVpc
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-vpc-${Env}
+  # ------------------------------------------------------------#
+  # Subnets
+  # ------------------------------------------------------------# 
+  Subnet1a:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Sub ${AWS::Region}a
+      CidrBlock: !Ref CidrSubnet1a
+      VpcId: !Ref Vpc
+      MapPublicIpOnLaunch: true
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-subnet-1a-${Env}
+  Subnet1c:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Sub ${AWS::Region}c
+      CidrBlock: !Ref CidrSubnet1c
+      VpcId: !Ref Vpc
+      MapPublicIpOnLaunch: true
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-subnet-1c-${Env}
+  Subnet1d:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Sub ${AWS::Region}d
+      CidrBlock: !Ref CidrSubnet1d
+      VpcId: !Ref Vpc
+      MapPublicIpOnLaunch: true
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-subnet-1d-${Env}
+  # ------------------------------------------------------------#
+  # Network Routing
+  # ------------------------------------------------------------#
+  IgwVpc:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-igw-${Env}
+  IgwVpcAtch:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref IgwVpc
+      VpcId: !Ref Vpc
+  RtSubnet:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Vpc
+      Tags:
+      - Key: Name
+        Value: !Sub ${Prefix}-rt-subnet-${Env}
+  RoutePublic:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RtSubnet
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref IgwVpc
+  RtAssocPublic1a:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet1a
+      RouteTableId: !Ref RtSubnet
+  RtAssocPublic1c:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet1c
+      RouteTableId: !Ref RtSubnet
+  RtAssocPublic1d:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet1d
+      RouteTableId: !Ref RtSubnet

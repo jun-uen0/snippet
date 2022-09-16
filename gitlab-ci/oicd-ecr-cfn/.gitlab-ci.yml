@@ -1,0 +1,105 @@
+variables:
+  DOCKER_HOST: tcp://docker:2375 # Docker connects to the dind service
+  # DOCKER_DRIVER: overlay2
+  DOCKER_VER: 19.03.1
+  GLIBC_VER: 2.31-r0
+  S3_BUCKET: ci-test-jun
+  AWS_ACOUONT_ID: 311575258506
+  AWS_REGION: ap-northeast-1
+  APP_NAME: ci-test_app
+
+.assume_role: &assume_role
+  - STS=$(aws sts assume-role-with-web-identity --role-arn ${ROLE_ARN} --role-session-name "GitLabRunner-${CI_PROJECT_ID}-${CI_PIPELINE_ID}" --web-identity-token $CI_JOB_JWT_V2 --duration-seconds 3600)
+  - export AWS_ACCESS_KEY_ID=$(echo "$STS" | jq -r ".Credentials.AccessKeyId")
+  - export AWS_SECRET_ACCESS_KEY=$(echo "$STS" | jq -r ".Credentials.SecretAccessKey")
+  - export AWS_SESSION_TOKEN=$(echo "$STS" | jq -r ".Credentials.SessionToken")
+  - export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+  - export AWS_ACCOUNT_ID=$(aws sts get-caller-identity | jq -r ".Account" )
+
+.glibc_install: &glibc_install
+  - curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub
+  - curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VER/glibc-$GLIBC_VER.apk
+  - curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VER/glibc-bin-$GLIBC_VER.apk
+  - curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VER/glibc-i18n-$GLIBC_VER.apk
+  - apk add --no-cache glibc-$GLIBC_VER.apk glibc-bin-$GLIBC_VER.apk glibc-i18n-$GLIBC_VER.apk
+  - /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8
+
+.aws_cli_install: &aws_cli_install
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  - unzip -q awscliv2.zip
+  - aws/install
+
+.aws_credentials: &aws_credentials
+  - export AWS_ACCESS_KEY_ID=$TEST_AWS_ACCESS_KEY_ID
+  - export AWS_SECRET_ACCESS_KEY=$TEST_AWS_SECRET_ACCESS_KEY
+  - export AWS_DEFAULT_REGION=$TEST_AWS_DEFAULT_REGION
+
+.bulid_and_push: &build_and_push
+  - docker-compose build --no-cache
+  - docker images
+  - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACOUONT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+  - docker tag $APP_NAME:latest $AWS_ACOUONT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/test:latest
+  - docker push $AWS_ACOUONT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/test:latest
+
+.uplaod_s3_and_update_stack: &uplaod_s3_and_update_stack
+  - aws s3 cp base.yml s3://$S3_BUCKET/base.yml
+  - >
+      aws cloudformation update-stack
+      --stack-name base
+      --template-url https://ci-test-jun.s3.$AWS_REGION.amazonaws.com/base.yml
+      --parameters
+      ParameterKey='Prefix',UsePreviousValue=true
+      ParameterKey='Env',UsePreviousValue=true
+      ParameterKey='CidrVpc',UsePreviousValue=true
+      ParameterKey='CidrSubnet1a',UsePreviousValue=true
+      ParameterKey='CidrSubnet1c',UsePreviousValue=true
+      ParameterKey='CidrSubnet1d',UsePreviousValue=true
+      --capabilities CAPABILITY_NAMED_IAM
+
+default:
+  image: docker:${DOCKER_VER}
+  services:
+    - docker:${DOCKER_VER}-dind
+  before_script:
+    - apk add --no-cache binutils jq curl docker-compose
+    - *glibc_install
+    - *aws_cli_install
+    # - *aws_credentials
+  
+# feature:
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH =~ /^feature/'
+#   script: echo "feature branch"
+
+# not-feature:
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH !~ /^feature/'
+#   script: echo "not feature branch"
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "develop"
+      variables:
+        ROLE_ARN: $ROLE_ARN_DEV
+    - if: $CI_COMMIT_REF_NAME == "staging"
+      variables:
+        ROLE_ARN: $ROLE_ARN_STG
+    - if: $CI_COMMIT_REF_NAME == "main"
+      variables:
+        ROLE_ARN: $ROLE_ARN_PROD
+    - when: always
+
+all:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_COMMIT_BRANCH == "staging"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+  script:
+    - *assume_role
+    - aws --version
+    - docker --version
+    - docker-compose --version
+    - cat /etc/alpine-release
+    - echo $ENV
+    - *build_and_push
+    - *uplaod_s3_and_update_stack
