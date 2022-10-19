@@ -22,8 +22,10 @@ docker volume prune
 ### delete all item in entire docker system (images,containers,volumes)
 ```shell
 docker system prune
-```
 
+# delete all unused image that have been stopped more than 24h
+docker system prune -a --filter "until = 24h"
+```
 
 ### build docker image without cache
 ```shell
