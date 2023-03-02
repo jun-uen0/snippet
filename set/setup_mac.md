@@ -47,33 +47,36 @@ Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/
 
 
 ### Setting up nice terminal with iTerm2
-Reference: https://gist.github.com/leymannx/598e0e92722f47cfb31daa7cf9f9a817
+- Download iTerm2
+https://gist.github.com/leymannx/598e0e92722f47cfb31daa7cf9f9a817
 
-Install Oh-my-zsh on iTerm
+Install Fish
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+brew install fish
 ```
 
+Install oh-my-zsh
+```shell
+curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/bin/install | fish
+```
+
+Install oh-my-fish agnoster package
+```shell
+omf install agnoster
+```
+
+Install Powerline fonts
+```shell
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+```
+
+Install zsh-completions 
 ```shell
 brew install zsh-completions
-```
-```shell
-brew install zsh-autosuggestions
-```
-```shell
-chmod -R go-w /opt/homebrew/share
-```
-
-```zsh
-# ~/.zshrc
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  autoload -Uz compinit && compinit
-fi
-```
-```shell
-source ~/.zshrc
 ```
 
 ### Speed Up for Mouse Tracking
