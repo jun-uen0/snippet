@@ -10,12 +10,11 @@
 - ExpressVPN: https://www.expressvpn.com/latest/1   
 - Dashlane: https://app.dashlane.com/login   
 - Grammarly: https://www.grammarly.com/desktop   
-
-- Rossetta
-- Homebrew
-- NVM
-- Nginx
-- Ngrok
+- Rossetta: https://support.apple.com/en-us/HT211861
+- Homebrew: https://brew.sh/
+- NVM: https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+- Nginx: https://www.nginx.com/
+- Ngrok: https://ngrok.com/
 
 # Setup local environment
 
@@ -42,9 +41,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 ### Install NVM
-For macOS (Apple silicon)
-Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/
-
+**For macOS (Apple silicon)**<br>
+Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/<br>
+**For macOS (Intel Chip)**<br>
+Reference: https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+<br>
 
 ### Setting up nice terminal with iTerm2
 - Download iTerm2
