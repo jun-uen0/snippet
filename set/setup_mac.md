@@ -55,6 +55,7 @@ Install Fish
 ```shell
 brew install fish
 ```
+To uninstall Fish: https://natsukium.github.io/fish-docs-jp/faq/uninstall.html
 
 Install oh-my-zsh
 ```shell
