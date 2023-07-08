@@ -10,12 +10,11 @@
 - ExpressVPN: https://www.expressvpn.com/latest/1   
 - Dashlane: https://app.dashlane.com/login   
 - Grammarly: https://www.grammarly.com/desktop   
-
-- Rossetta
-- Homebrew
-- NVM
-- Nginx
-- Ngrok
+- Rossetta: https://support.apple.com/en-us/HT211861
+- Homebrew: https://brew.sh/
+- NVM: https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+- Nginx: https://www.nginx.com/
+- Ngrok: https://ngrok.com/
 
 # Setup local environment
 
@@ -42,38 +41,44 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 ### Install NVM
-For macOS (Apple silicon)
-Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/
-
+**For macOS (Apple silicon)**<br>
+Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/<br>
+**For macOS (Intel Chip)**<br>
+Reference: https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+<br>
 
 ### Setting up nice terminal with iTerm2
-Reference: https://gist.github.com/leymannx/598e0e92722f47cfb31daa7cf9f9a817
+- Download iTerm2
+https://gist.github.com/leymannx/598e0e92722f47cfb31daa7cf9f9a817
 
-Install Oh-my-zsh on iTerm
+Install Fish
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+brew install fish
+```
+To uninstall Fish: https://natsukium.github.io/fish-docs-jp/faq/uninstall.html
+
+Install oh-my-zsh
+```shell
+curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/bin/install | fish
 ```
 
+Install oh-my-fish agnoster package
+```shell
+omf install agnoster
+```
+
+Install Powerline fonts
+```shell
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+```
+
+Install zsh-completions 
 ```shell
 brew install zsh-completions
-```
-```shell
-brew install zsh-autosuggestions
-```
-```shell
-chmod -R go-w /opt/homebrew/share
-```
-
-```zsh
-# ~/.zshrc
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  autoload -Uz compinit && compinit
-fi
-```
-```shell
-source ~/.zshrc
 ```
 
 ### Speed Up for Mouse Tracking
