@@ -1,26 +1,24 @@
 from collections import deque
 
-graph = {} # Make hash table (Dictionary)
-graph['me'] = ['yamamoto','tanaka']
-graph['yamamoto'] = ['sasaki','ito']
-graph['tanaka'] = ['sato','nishimoto']
+graph = {
+  'A': ['B', 'C'],
+  'B': ['A', 'D', 'E'],
+  'C': ['A', 'F'],
+  'D': ['B'],
+  'E': ['B', 'F'],
+  'F': ['C', 'E'],
+}
 
-def is_end_with_i(name):
-  return name[-1] == 'i'
+def bfs(graph, root):
+  visited = []
+  queue = deque([root])
+  print(f'queue is {queue}')
+  while queue:
+    node = queue.popleft()
+    if node not in visited:
+      visited.append(node)
+      queue.extend([x for x in graph[node] if x not in visited])
+      print(f'queue is {queue}')
+  return visited
 
-def search(name):
-  search_queue = deque()
-  search_queue += graph[name]
-  searched = []
-  while search_queue:
-    person = search_queue.popleft()
-    if not person in searched:
-      if is_end_with_i(person):
-        print(person + " is finished with i")
-        return True
-      else:
-        search_queue += graph[person]
-        searched.append(person)
-  return False
-
-search('me')
+print(bfs(graph, 'A'))  # ['A', 'B', 'C', 'D', 'E', 'F']
