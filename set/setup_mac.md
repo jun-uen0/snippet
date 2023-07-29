@@ -47,6 +47,33 @@ Reference: https://blog.logrocket.com/how-switch-node-js-versions-nvm/<br>
 Reference: https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
 <br>
 
+### Setting up nice terminal
+Install oh-my-zsh
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Install Powerline fonts
+```shell
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -rf fonts
+```
+
+Install zsh-completions
+```shell
+brew install zsh-completions
+```
+Add a line to enable zsh-completions
+```shell
+ ~ vi .zshrc
+
+# To activate the autosuggestions
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
+
 ### Setting up nice terminal with iTerm2
 - Download iTerm2
 https://gist.github.com/leymannx/598e0e92722f47cfb31daa7cf9f9a817
